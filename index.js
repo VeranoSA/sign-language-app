@@ -5,25 +5,11 @@ const app = express();
 app.use(express.static('public'));
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
-/*
-var connectionstr = process.env.DATABASE_URL;
-var pool;
-if (connectionstr) {
-    pool = new Pool({
-        connectionString: connectionstr,
-        ssl: { rejectUnauthorized: false },
-    });
-} else {
-    pool = new Pool({
-        user: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        password: 'mthobisi',
-        database: 'users',
-        ssl: false,
-    });
-}
-*/
+
+app.get('/', (req, res) => {
+    res.render('index.html')
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('Server started on ' + PORT);
