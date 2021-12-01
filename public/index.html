@@ -10,21 +10,26 @@
 </head>
 
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div>
                     <h1>Basic Sign Language Learning</h1>
                     <label for="">Please enter a username</label>
-                    <input type="text" name="" class="">
-                    <button type="button"> <a href="learn-Hello.html">Submit</a> 
-                    </button>
+                    <input type="text" name="" class="input">
+                    <button type="button" onclick="getName()"><!---<a href="learn-Hello.html">Submit</a>--> submit
+                    </button> <br> <button class="hide" style="display: none;"><a href="learn-Hello.html">Continue</a></button>
                 </div>
             </div>
         </div>
 
     </div>
-    
+    <script>
+        localStorage.clear();
+    </script>
+    <script src="/js/data.js"></script>
+
 </body>
 
 </html>

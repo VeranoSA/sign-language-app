@@ -1,11 +1,14 @@
 const express = require('express');
 const body = require('body-parser');
 const app = express();
-//const { Pool } = require('pg');
+const cors = require('cors')
+    //const { Pool } = require('pg');
 app.use(express.static('public'));
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
-
+app.use(cors({
+    origin: '*'
+}))
 app.get('/', (req, res) => {
     res.render('index.html')
 });
