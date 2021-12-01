@@ -60,8 +60,35 @@ async function predict() {
 
     //reference get data first
     var name = localStorage.getItem('name');
-    console.log(name)
-    var status = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + inputName.value);
+    //console.log(name)
+    var status = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + name);
+    if (status.data.userStatus == 'New User') {
+        console.log('true');
+        var number = ((prediction[0].probability.toFixed(2)) * 100)
+        var label = prediction[0].className
+        console.log(number, label)
+        labelContainer.innerHTML = label + ': ' + number + '%';
+        if (number == 100) {
+            // alert('you won')
+            //labelContainer.innerHTML = 'You won!';
+            var p = document.querySelector('.status');
+            var ps = document.querySelector('.status');
+            p.innerHTML = 'You Won! You just earned 10 points';
+            ps.innerHTML = 10
+            document.getElementById("canvas").style.display = 'none';
+            //modelURL = null;
+            //metadataURL = null;
+            //labelContainer.style.display = 'none';
+            await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
+        } else {
+
+        }
+    } else {
+        var number = ((prediction[0].probability.toFixed(2)) * 100)
+        var label = prediction[0].className
+        console.log(number, label)
+        labelContainer.innerHTML = label + ': ' + number + '%';
+    };
     drawPose(pose);
 }
 
@@ -75,4 +102,4 @@ function drawPose(pose) {
             tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
         }
     }
-}
+};
