@@ -1,23 +1,20 @@
-// More API functions here:
-// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
-
-// the link to your model provided by Teachable Machine export panel
 const URL = "https://teachablemachine.withgoogle.com/models/ZnBUgiBeq/";
 let model, webcam, ctx, labelContainer, maxPredictions;
 (async() => {
     var namee = localStorage.getItem('name')
     var local = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + namee)
+    console.log(local.data);
     if (local.data.data.levelName) {
         if (local === 'Hello') {
-            location.replace('./learn-Thank_you.html');
+            location.replace('/learn-Thank_you.html');
         } else if (local === 'Thank You') {
-            location.replace('./learn-ILVU.html');
+            location.replace('/learn-ILVU.html');
         } else if (local === 'I love you') {
-            location.replace('./learn-please.html');
+            location.replace('/learn-please.html');
         } else if (local === 'Please') {
-            location.replace('./learn-sorry.html');
+            location.replace('/learn-sorry.html');
         } else if (local === 'Sorry') {
-            location.replace('./learn-done.html');
+            location.replace('/learn-done.html');
         }
     }
 })();
@@ -85,6 +82,7 @@ async function predict() {
         var label = prediction[0].className
         console.log(number, label)
         labelContainer.innerHTML = label + ': ' + number + '%';
+        location.replace('./learn-Thank_you.html');
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })

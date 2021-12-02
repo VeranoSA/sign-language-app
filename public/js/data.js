@@ -13,5 +13,4 @@ async function getName() {
     elem.style.display = 'block';
 
 
-    location.replace('./data.html')
 }
