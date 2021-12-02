@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/simple-grid.css">
+    <link rel="stylesheet" href="css/style.css">
     <script type="template-x" class='script'>
         <table>
             <tr>
@@ -37,6 +38,11 @@
             <div class="col-12">
                 <h2>Learn basic sign Language in a simple way</h3>
                     <div class="score"></div>
+                    <h5>Question 1/3</h5>
+                    <div class="progress">
+                        <div class="progress__fill" style="width: 40%;"></div>
+                        <span class="progress__text"></span>
+                    </div>
                     <div class="col-8">
                         <p>Watch this short clip to learn how to do it better</p>
                         <video src="./vids/Hello.mp4" controls></video>
@@ -53,6 +59,7 @@
 
 </body>
 <script src="./handlebars/learnhello.js"></script>
+<script src="./js/progress.js"></script>
 <style>
     video {
         width: 70%;
