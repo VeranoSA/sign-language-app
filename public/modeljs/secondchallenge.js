@@ -91,8 +91,8 @@ async function predict() {
 
         }*/
     } else {
-        var number = ((prediction[2].probability.toFixed(2)) * 100)
-        var label = prediction[2].className
+        var number = ((prediction[1].probability.toFixed(2)) * 100)
+        var label = prediction[1].className
         console.log(number, label)
         labelContainer.innerHTML = label + ': ' + number + '%';
         if (number == 100) {
