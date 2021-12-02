@@ -4,6 +4,7 @@ let model, webcam, ctx, labelContainer, maxPredictions;
     var namee = localStorage.getItem('name')
     var local = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + namee)
     console.log(local.data);
+    console.log(local.data.data.levelName)
     if (local.data.data.levelName) {
         if (local === 'Hello') {
             location.replace('/learn-Thank_you.html');
