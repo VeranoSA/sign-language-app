@@ -11,4 +11,7 @@ async function getName() {
     localStorage.setItem('name', inputName.value);
     var elem = document.querySelector('.hide');
     elem.style.display = 'block';
+
+
+    location.replace('./data.html')
 }

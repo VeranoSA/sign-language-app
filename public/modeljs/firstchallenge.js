@@ -4,6 +4,23 @@
 // the link to your model provided by Teachable Machine export panel
 const URL = "https://teachablemachine.withgoogle.com/models/ZnBUgiBeq/";
 let model, webcam, ctx, labelContainer, maxPredictions;
+(async() => {
+    var namee = localStorage.getItem('name')
+    var local = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + namee)
+    if (local.data.data.levelName) {
+        if (local === 'Hello') {
+            location.replace('./learn-Thank_you.html');
+        } else if (local === 'Thank You') {
+            location.replace('./learn-ILVU.html');
+        } else if (local === 'I love you') {
+            location.replace('./learn-please.html');
+        } else if (local === 'Please') {
+            location.replace('./learn-sorry.html');
+        } else if (local === 'Sorry') {
+            location.replace('./learn-done.html');
+        }
+    }
+})();
 
 async function init() {
     const modelURL = URL + "model.json";
@@ -69,17 +86,9 @@ async function predict() {
         console.log(number, label)
         labelContainer.innerHTML = label + ': ' + number + '%';
         if (number == 100) {
-            // alert('you won')
-            //labelContainer.innerHTML = 'You won!';
-            var p = document.querySelector('.status');
-            var ps = document.querySelector('.status');
-            p.innerHTML = 'You Won! You just earned 10 points';
-            ps.innerHTML = 10
-            document.getElementById("canvas").style.display = 'none';
-            //modelURL = null;
-            //metadataURL = null;
-            //labelContainer.style.display = 'none';
+            localStorage.setItem('levelDone', 'Hello');
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
+            location.replace('./learn-Thank_you.html');
         } else {
 
         }
@@ -88,6 +97,11 @@ async function predict() {
         var label = prediction[0].className
         console.log(number, label)
         labelContainer.innerHTML = label + ': ' + number + '%';
+        if (number == 100) {
+            localStorage.setItem('levelDone', 'Hello');
+            await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
+            location.replace('./learn-Thank_you.html');
+        }
     };
     drawPose(pose);
 }
