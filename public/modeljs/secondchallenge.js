@@ -4,6 +4,7 @@ let model, webcam, ctx, labelContainer, maxPredictions;
     var namee = localStorage.getItem('name')
     var local = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + namee)
     console.log(local.data);
+    console.log(local.data.data.levelName)
     if (local.data.data.levelName) {
         if (local === 'Hello') {
             location.replace('/learn-Thank_you.html');
@@ -91,10 +92,10 @@ async function predict() {
 
         }*/
     } else {
-        var number = ((prediction[1].probability.toFixed(2)) * 100)
-        var label = prediction[1].className
+        var number = ((prediction[2].probability.toFixed(2)) * 100)
+        var label = prediction[2].className
         console.log(number, label)
-        labelContainer.innerHTML = label + ': ' + number + '%';
+        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
         if (number == 100) {
             localStorage.setItem('levelDone', 'Thank You');
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })

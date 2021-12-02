@@ -76,17 +76,21 @@ async function predict() {
     var name = localStorage.getItem('name');
     //console.log(name)
     var status = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + name);
+    console.log(status)
     if (status.data.userStatus == 'New User') {
         console.log('true');
         var number = ((prediction[0].probability.toFixed(2)) * 100)
         var label = prediction[0].className
         console.log(number, label)
-        labelContainer.innerHTML = label + ': ' + number + '%';
-        location.replace('./learn-Thank_you.html');
+         //  location.replace('./learn-Thank_you.html');
+        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
+            
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
             location.replace('./learn-Thank_you.html');
+            var btn = document.querySelector('.hide')
+            btn.style.display = "block"
         } else {
 
         }
@@ -94,7 +98,7 @@ async function predict() {
         var number = ((prediction[0].probability.toFixed(2)) * 100)
         var label = prediction[0].className
         console.log(number, label)
-        labelContainer.innerHTML = label + ': ' + number + '%';
+        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
