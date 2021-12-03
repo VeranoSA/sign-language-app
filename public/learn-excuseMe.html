@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.js" integrity="sha256-hSzapznWRy/aOZkctlN03an9DxCLlN8ZCQS0lxntiHg=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.js"
+        integrity="sha256-hSzapznWRy/aOZkctlN03an9DxCLlN8ZCQS0lxntiHg=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"
+        integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,24 +16,37 @@
 </head>
 
 <body>
-    <div class="container">
+    <script type="template-x" class='script'>
+        <div class="header">
+            <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+                <p class="pure-menu-heading" href="">Player Name: {{name}}</p>
+                <p class="pure-menu-heading" href="">Score: {{data.player_score}}</p>
+            </div>
+        </div>
+    </script>
+    <div class="splash-container">
         <div class="row">
             <div class="col-12">
-                <h2>Learn basic sign Language in a simple way</h3>
+                <h2 class="splash-head4">Learn basic sign Language in a simple way</h2>
+                <div class="score"></div>
+                <div class="col-6">
+                    <p class="splash-subhead">Watch this short clip to learn how to do it better</p>
+                    <video width="400" height="250" src="./video/Excuse Me.mp4" controls
+                        poster="./img/level four.jpeg"></video>
+                </div>
+                <div class="col-4">
+                    <h3 class="splash-head3">"Excuse Me"</h3>
+                    <p class="splash-subhead">
+                    In this lesson I am going to teach you how to say "Excuse Me"
+                        To sign Excuse Me, take your not dominant hand and your dominant hand goes on top with an arch
+                        shape and just move your it foward</p>
 
-                    <div class="col-8">
-                        <p>Watch this short clip to learn how to do it better</p>
-                        <video width="400" height="200" src="./video/Excuse Me.mp4" controls poster="./img/level four.jpeg"></video>
-                    </div>
-                    <div class="col-4">
-                        <h3>Excuse Me</h3>
-                        <p>In this lesson I am going to teach you how to say "Excuse Me"</p>
-                        <p>To sign Excuse Me, take your not dominant hand and your dominant hand goes on top with an arch shape and just move your it foward</p>
-                        <button type="button"><a href="challenge-three.html">Start challenge</a> </button>
-                    </div>
+                    <button type="button"><a href="challenge-four.html">Start challenge</a> </button>
+                </div>
             </div>
         </div>
     </div>
+
     <script src="./handlebars/learnhello.js"></script>
 </body>
 

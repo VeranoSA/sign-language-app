@@ -269,6 +269,15 @@ label {
   border-radius: 5px;
 }
 
+.pure-button1 {
+  background-color: #c9ddeb;
+
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  margin-left: 40%;
+}
+
 a.pure-button-primary {
   background: white;
   color: #1f8dd6;
@@ -283,9 +292,10 @@ a.pure-button-primary {
 */
 
 .home-menu {
-  padding: 0.5em;
   text-align: center;
-  box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+  margin-left: 80%;
+  margin-top: -4%;
+  margin-bottom: -3%;
 }
 .home-menu {
   background: #2d3e50;
@@ -324,7 +334,7 @@ a.pure-button-primary {
 */
 
 .splash-container {
-  background: #1f8dd6;
+  background: #034774;
   z-index: 1;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
@@ -357,6 +367,34 @@ a.pure-button-primary {
   border-radius: 5px;
   line-height: 1em;
   margin-top: -25%;
+}
+.splash-head2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 1em 1.6em;
+  font-weight: 100;
+  border-radius: 5px;
+  line-height: 1em;
+}
+.splash-head3 {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  font-weight: 100;
+  border-radius: 5px;
+  line-height: 1em;
+  margin-top: 10%;
+}
+
+.splash-head4 {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  font-weight: 100;
+  border-radius: 5px;
+  line-height: 1em;
+  margin-left: 2%;
 }
 
 /* This is the subheading that appears on the blue section */
