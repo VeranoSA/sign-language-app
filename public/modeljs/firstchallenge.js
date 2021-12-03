@@ -8,14 +8,10 @@ let model, webcam, ctx, labelContainer, maxPredictions;
         if (local === 'Hello') {
             location.replace('/learn-Thank_you.html');
         } else if (local === 'Thank You') {
-            location.replace('/learn-ILVU.html');
-        } else if (local === 'I love you') {
             location.replace('/learn-please.html');
         } else if (local === 'Please') {
-            location.replace('/learn-sorry.html');
-        } else if (local === 'Sorry') {
             location.replace('/learn-done.html');
-        }
+        } 
     }
 })();
 
@@ -83,10 +79,11 @@ async function predict() {
         var label = prediction[0].className
         console.log(number, label)
          //  location.replace('./learn-Thank_you.html');
-        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
             
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
+        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
+
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
             location.replace('./learn-Thank_you.html');
             var btn = document.querySelector('.hide')
@@ -98,14 +95,18 @@ async function predict() {
         var number = ((prediction[0].probability.toFixed(2)) * 100)
         var label = prediction[0].className
         console.log(number, label)
-        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
+        labelContainer.innerHTML = "Congratulations you know how to sign " + label;
+
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
             location.replace('./learn-Thank_you.html');
+        }else{
+        labelContainer.innerHTML = "keep trying " + label;
+
         }
     };
-    drawPose(pose);
+  //  drawPose(pose);
 }
 
 function drawPose(pose) {
