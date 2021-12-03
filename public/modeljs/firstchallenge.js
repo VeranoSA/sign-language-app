@@ -1,6 +1,11 @@
-const URL = "https://teachablemachine.withgoogle.com/models/ZnBUgiBeq/";
+// More API functions here:
+// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
+
+// the link to your model provided by Teachable Machine export panel
+const URL = "https://teachablemachine.withgoogle.com/models/s8BSQju4G/";
 let model, webcam, ctx, labelContainer, maxPredictions;
-(async() => {
+
+(async () => {
     var namee = localStorage.getItem('name')
     var local = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + namee)
     console.log(local.data);
@@ -8,12 +13,8 @@ let model, webcam, ctx, labelContainer, maxPredictions;
         if (local === 'Hello') {
             location.replace('/learn-Thank_you.html');
         } else if (local === 'Thank You') {
-            location.replace('/learn-ILVU.html');
-        } else if (local === 'I love you') {
             location.replace('/learn-please.html');
         } else if (local === 'Please') {
-            location.replace('/learn-sorry.html');
-        } else if (local === 'Sorry') {
             location.replace('/learn-done.html');
         }
     }
@@ -39,8 +40,7 @@ async function init() {
 
     // append/get elements to the DOM
     const canvas = document.getElementById("canvas");
-    canvas.width = size;
-    canvas.height = size;
+    canvas.width = size; canvas.height = size;
     ctx = canvas.getContext("2d");
     labelContainer = document.getElementById("label-container");
     for (let i = 0; i < maxPredictions; i++) { // and class labels
@@ -57,36 +57,34 @@ async function loop(timestamp) {
 async function predict() {
     // Prediction #1: run input through posenet
     // estimatePose can take in an image, video or canvas html element
-    const {
-        pose,
-        posenetOutput
-    } = await model.estimatePose(webcam.canvas);
+    const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
     // Prediction 2: run input through teachable machine classification model
     const prediction = await model.predict(posenetOutput);
-    /*
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
-*/
-    // finally draw the poses
 
-    //reference get data first
+    // for (let i = 0; i < maxPredictions; i++) {
+    //     const classPrediction =
+    //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+    //     labelContainer.childNodes[i].innerHTML = classPrediction;
+    // }
+
     var name = localStorage.getItem('name');
     //console.log(name)
     var status = await axios.get('http://basic-sign-language-api.herokuapp.com/getuser/' + name);
+    console.log(status)
     if (status.data.userStatus == 'New User') {
         console.log('true');
         var number = ((prediction[0].probability.toFixed(2)) * 100)
         var label = prediction[0].className
         console.log(number, label)
-        labelContainer.innerHTML = label + ': ' + number + '%';
-        location.replace('./learn-Thank_you.html');
+        //  location.replace('./learn-Thank_you.html');
+
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
+            labelContainer.innerHTML = "Congratulations you know how to sign " + label;
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
             location.replace('./learn-Thank_you.html');
+            var btn = document.querySelector('.hide')
+            btn.style.display = "block"
         } else {
 
         }
@@ -94,13 +92,19 @@ async function predict() {
         var number = ((prediction[0].probability.toFixed(2)) * 100)
         var label = prediction[0].className
         console.log(number, label)
-        labelContainer.innerHTML = label + ': ' + number + '%';
         if (number == 100) {
             localStorage.setItem('levelDone', 'Hello');
+            labelContainer.innerHTML = "Congratulations you know how to sign " + label;
+
             await axios.post('http://basic-sign-language-api.herokuapp.com/submit', { name, levelName: 'Hello', score: 10 })
             location.replace('./learn-Thank_you.html');
+        } else {
+            labelContainer.innerHTML = "keep trying " + label;
+
         }
     };
+
+    // finally draw the poses
     drawPose(pose);
 }
 
@@ -114,4 +118,4 @@ function drawPose(pose) {
             tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
         }
     }
-};
+}
