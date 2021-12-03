@@ -1,0 +1,105 @@
+body{
+    background: #1f8dd6;
+}
+.col-12 h2{
+    color: white;
+}
+.col-6 p{
+    color: white;
+}
+.col-4 h3,p {
+    color: white;
+}
+.col-12  h1,h4,h3{
+    color: white;
+}
+.myDiv{
+    color: white;
+}
+#label-container{
+    color: white;
+}
+h1{
+    color: white;
+}
+.table{
+    color: white;
+}
+
+.button{
+    position: relative;
+    color: #15f4ee;
+    border: 5px solid #15f4ee;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+.button:hover{
+    box-shadow:  0 5px 50px #15f4ee inset,  0 5px 50px #15f4ee,
+                0 5px 50px #15f4ee inset, 0 5px 50px #15f4ee;
+
+    text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee;
+}
+
+.buttons{
+    position: relative;
+    color: black;
+    border: 5px solid #15f4ee;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+.buttons:hover{
+    box-shadow:  0 5px 50px #15f4ee inset,  0 5px 50px #15f4ee,
+                0 5px 50px #15f4ee inset, 0 5px 50px #15f4ee;
+
+    text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee;
+}
+
+.click a{
+    position: relative;
+    color: black;
+    border: 5px solid #15f4ee;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+.click:hover a{
+    box-shadow:  0 5px 50px #15f4ee inset,  0 5px 50px #15f4ee,
+                0 5px 50px #15f4ee inset, 0 5px 50px #15f4ee;
+
+    text-shadow: 0 0 5px #15f4ee, 0 0 5px #15f4ee; 
+
+}
+
+table {
+    border-collapse: collapse;
+}
+th {
+    background-color: #009879;
+
+}
+th, td {
+    width:150px;
+    text-align:center;
+    border:1px solid black;
+    padding:3px;
+    
+  
+}
+.dynamic{
+    border-collapse:separate;
+    border-spacing:0 15px;
+}
+
+.dynamic tr{
+   
+    text-align: left;
+    font-weight: bold;
+    
+}
